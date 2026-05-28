@@ -1,126 +1,158 @@
 "use client";
 
-import LiveNotifications from "@/components/LiveNotifications";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import MultiStepForm from "@/components/MultiStepForm";
+import LiveNotifications from "@/components/LiveNotifications";
+
 const cards = [
+
   {
     title: "Total Users",
     value: "1,250",
     color: "from-blue-500 to-cyan-500",
   },
+
   {
     title: "Revenue",
     value: "$8,400",
     color: "from-purple-500 to-pink-500",
   },
+
   {
     title: "Orders",
     value: "320",
     color: "from-orange-500 to-red-500",
   },
+
 ];
 
 const menuItems = [
+
   "Dashboard",
   "Analytics",
   "Users",
   "Settings",
+
 ];
 
 const users = [
+
   { id: 1, name: "Ali", email: "ali@gmail.com" },
   { id: 2, name: "Ahmed", email: "ahmed@gmail.com" },
   { id: 3, name: "Sara", email: "sara@gmail.com" },
   { id: 4, name: "Zain", email: "zain@gmail.com" },
   { id: 5, name: "Ayesha", email: "ayesha@gmail.com" },
   { id: 6, name: "Hamza", email: "hamza@gmail.com" },
+
 ];
 
 export default function DashboardPage() {
 
   const router = useRouter();
 
-  const [page, setPage] = useState(1);
-  const [darkMode, setDarkMode] = useState(false);
+  const [page, setPage] =
+    useState(1);
+
+  const [darkMode, setDarkMode] =
+    useState(true);
 
   const itemsPerPage = 3;
 
-  const start = (page - 1) * itemsPerPage;
+  const start =
+    (page - 1) * itemsPerPage;
 
-  const currentUsers = users.slice(start, start + itemsPerPage);
+  const currentUsers =
+    users.slice(
+      start,
+      start + itemsPerPage
+    );
 
   return (
 
     <div
       className={`min-h-screen flex flex-col lg:flex-row ${
         darkMode
-          ? "bg-gray-900"
-          : "bg-gray-100"
+          ? "bg-black text-white"
+          : "bg-gray-100 text-black"
       }`}
     >
 
       {/* Sidebar */}
-      <div className="w-full lg:w-[240px] bg-gradient-to-b from-blue-700 to-purple-700 text-white p-6">
+      <div className="w-full lg:w-[260px] bg-gradient-to-b from-[#0f172a] to-[#111827] border-r border-white/10 p-8">
 
-        <h1 className="text-3xl font-bold mb-8">
-          Admin Panel
+        <h1 className="text-4xl font-extrabold text-white mb-10">
+
+          Nexe Agent
+
         </h1>
 
-        <ul className="space-y-4">
+        <div className="space-y-4">
 
           {menuItems.map((item, index) => (
 
-            <li
+            <div
               key={index}
-              className="bg-white/10 hover:bg-white/20 px-4 py-3 rounded-xl cursor-pointer transition"
+              className="bg-white/5 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 text-white px-5 py-4 rounded-2xl font-semibold transition-all duration-300 hover:translate-x-2 cursor-pointer"
             >
+
               {item}
-            </li>
+
+            </div>
 
           ))}
 
-        </ul>
+        </div>
 
       </div>
 
       {/* Main */}
-      <div className="flex-1 p-5 md:p-8">
+      <div className="flex-1 p-5 md:p-10">
 
         {/* Top */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-10">
 
           <div>
 
-            <h2
-              className={`text-3xl md:text-4xl font-bold ${
-                darkMode ? "text-white" : "text-black"
-              }`}
-            >
+            <h2 className="text-4xl md:text-5xl font-extrabold">
+
               Dashboard Overview
+
             </h2>
 
-            <p className="text-gray-500 mt-2">
+            <p className="text-gray-400 mt-3 text-lg">
+
               Welcome back 👋
+
             </p>
 
           </div>
 
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex gap-4 flex-wrap">
 
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="bg-black text-white px-5 py-3 rounded-xl"
+              onClick={() =>
+                setDarkMode(!darkMode)
+              }
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:scale-105 transition-all duration-300"
             >
-              {darkMode ? "☀️ Light" : "🌙 Dark"}
+
+              {darkMode
+                ? "☀️ Light"
+                : "🌙 Dark"}
+
             </button>
 
             <button
-              onClick={() => router.push("/")}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl transition"
+              onClick={() =>
+                router.push("/")
+              }
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-2xl font-bold hover:scale-105 transition-all duration-300"
             >
+
               ← Home
+
             </button>
 
           </div>
@@ -128,21 +160,25 @@ export default function DashboardPage() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           {cards.map((card, index) => (
 
             <div
               key={index}
-              className={`bg-gradient-to-r ${card.color} p-6 rounded-2xl shadow-lg text-white`}
+              className={`bg-gradient-to-r ${card.color} p-8 rounded-[32px] shadow-2xl`}
             >
 
-              <h3 className="text-lg opacity-90">
+              <h3 className="text-xl opacity-90">
+
                 {card.title}
+
               </h3>
 
-              <p className="text-4xl font-bold mt-4">
+              <p className="text-5xl font-extrabold mt-5">
+
                 {card.value}
+
               </p>
 
             </div>
@@ -151,59 +187,70 @@ export default function DashboardPage() {
 
         </div>
 
-        {/* User Table */}
+        {/* Table */}
         <div
-          className={`mt-10 rounded-2xl shadow-lg p-5 ${
+          className={`mt-12 rounded-[32px] p-6 md:p-8 shadow-2xl border ${
             darkMode
-              ? "bg-gray-800"
-              : "bg-white"
+              ? "bg-white/5 border-white/10"
+              : "bg-white border-gray-200"
           }`}
         >
 
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-8">
 
             <div>
 
-              <h3
-                className={`text-2xl font-bold ${
-                  darkMode ? "text-white" : "text-black"
-                }`}
-              >
+              <h3 className="text-3xl font-bold">
+
                 Users Table
+
               </h3>
 
-              <p className="text-gray-500 mt-1">
-                Manage users easily
+              <p className="text-gray-400 mt-2">
+
+                Manage users professionally
+
               </p>
 
             </div>
 
             <input
               type="text"
-              placeholder="Search..."
-              className={`px-4 py-3 rounded-xl outline-none border w-full md:w-[250px] ${
+              placeholder="Search users..."
+              className={`px-5 py-4 rounded-2xl outline-none border w-full md:w-[280px] ${
                 darkMode
-                  ? "bg-gray-900 border-gray-700 text-white"
+                  ? "bg-black border-white/10 text-white"
                   : "bg-gray-100 border-gray-300 text-black"
               }`}
             />
 
           </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto rounded-xl">
+          {/* Responsive Table */}
+          <div className="overflow-x-auto rounded-2xl">
 
-            <table className="w-full min-w-[600px]">
+            <table className="w-full min-w-[650px]">
 
               <thead>
 
-                <tr className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                <tr className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white">
 
-                  <th className="p-4 text-left">User</th>
-                  <th className="p-4 text-left">Email</th>
-                  <th className="p-4 text-left">Status</th>
-                  <th className="p-4 text-left">Action</th>
+                  <th className="p-5 text-left">
+                    User
+                  </th>
+
+                  <th className="p-5 text-left">
+                    Email
+                  </th>
+
+                  <th className="p-5 text-left">
+                    Status
+                  </th>
+
+                  <th className="p-5 text-left">
+                    Action
+                  </th>
 
                 </tr>
 
@@ -211,82 +258,82 @@ export default function DashboardPage() {
 
               <tbody>
 
-                {currentUsers.map((user, index) => (
+                {currentUsers.map(
+                  (user, index) => (
 
-                  <tr
-                    key={user.id}
-                    className={`border-b transition hover:bg-blue-50 ${
-                      darkMode
-                        ? "border-gray-700 hover:bg-gray-700"
-                        : "border-gray-200"
-                    } ${
-                      index % 2 === 0
-                        ? darkMode
-                          ? "bg-gray-900"
-                          : "bg-gray-50"
-                        : ""
-                    }`}
-                  >
-
-                    {/* User */}
-                    <td className="p-4">
-
-                      <div className="flex items-center gap-3">
-
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
-                          {user.name.charAt(0)}
-                        </div>
-
-                        <div>
-
-                          <p
-                            className={`font-semibold ${
-                              darkMode ? "text-white" : "text-black"
-                            }`}
-                          >
-                            {user.name}
-                          </p>
-
-                          <p className="text-sm text-gray-500">
-                            ID #{user.id}
-                          </p>
-
-                        </div>
-
-                      </div>
-
-                    </td>
-
-                    {/* Email */}
-                    <td
-                      className={`p-4 ${
-                        darkMode ? "text-gray-300" : "text-gray-700"
-                      }`}
+                    <tr
+                      key={user.id}
+                      className={`border-b ${
+                        darkMode
+                          ? "border-white/10 hover:bg-white/5"
+                          : "border-gray-200 hover:bg-gray-50"
+                      } transition`}
                     >
-                      {user.email}
-                    </td>
 
-                    {/* Status */}
-                    <td className="p-4">
+                      {/* User */}
+                      <td className="p-5">
 
-                      <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                        Active
-                      </span>
+                        <div className="flex items-center gap-4">
 
-                    </td>
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white">
 
-                    {/* Action */}
-                    <td className="p-4">
+                            {user.name.charAt(0)}
 
-                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
-                        View
-                      </button>
+                          </div>
 
-                    </td>
+                          <div>
 
-                  </tr>
+                            <p className="font-bold">
 
-                ))}
+                              {user.name}
+
+                            </p>
+
+                            <p className="text-sm text-gray-400">
+
+                              ID #{user.id}
+
+                            </p>
+
+                          </div>
+
+                        </div>
+
+                      </td>
+
+                      {/* Email */}
+                      <td className="p-5">
+
+                        {user.email}
+
+                      </td>
+
+                      {/* Status */}
+                      <td className="p-5">
+
+                        <span className="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm">
+
+                          Active
+
+                        </span>
+
+                      </td>
+
+                      {/* Action */}
+                      <td className="p-5">
+
+                        <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-2 rounded-xl hover:scale-105 transition-all duration-300">
+
+                          View
+
+                        </button>
+
+                      </td>
+
+                    </tr>
+
+                  )
+                )}
 
               </tbody>
 
@@ -295,29 +342,76 @@ export default function DashboardPage() {
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-5 mt-8">
 
-            <p className="text-gray-500">
-              Showing {start + 1} to{" "}
-              {Math.min(start + itemsPerPage, users.length)}
-            </p>
+            {/* Info */}
+            <div className="text-gray-400">
 
-            <div className="flex gap-3">
+              Showing{" "}
+
+              <span className="font-bold">
+
+                {start + 1}
+
+              </span>
+
+              {" "}to{" "}
+
+              <span className="font-bold">
+
+                {Math.min(
+                  start + itemsPerPage,
+                  users.length
+                )}
+
+              </span>
+
+              {" "}of{" "}
+
+              <span className="font-bold">
+
+                {users.length}
+
+              </span>
+
+              {" "}users
+
+            </div>
+
+            {/* Buttons */}
+            <div className="flex items-center gap-4">
 
               <button
-                onClick={() => setPage(page - 1)}
+                onClick={() =>
+                  setPage(page - 1)
+                }
                 disabled={page === 1}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg disabled:bg-gray-400 transition"
+                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold hover:scale-105 transition-all duration-300 disabled:opacity-40"
               >
-                Prev
+
+                ← Prev
+
               </button>
 
+              <div className="px-5 py-3 rounded-2xl bg-white/10 border border-white/10 font-bold">
+
+                {page}
+
+              </div>
+
               <button
-                onClick={() => setPage(page + 1)}
-                disabled={start + itemsPerPage >= users.length}
-                className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg disabled:bg-gray-400 transition"
+                onClick={() =>
+                  setPage(page + 1)
+                }
+                disabled={
+                  start + itemsPerPage >=
+                  users.length
+                }
+                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold hover:scale-105 transition-all duration-300 disabled:opacity-40"
               >
-                Next
+
+                Next →
+
               </button>
 
             </div>
@@ -325,7 +419,11 @@ export default function DashboardPage() {
           </div>
 
         </div>
+
+        {/* Multi Step Form */}
         <MultiStepForm />
+
+        {/* Live Notifications */}
         <LiveNotifications />
 
       </div>

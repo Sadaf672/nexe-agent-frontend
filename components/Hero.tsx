@@ -20,7 +20,7 @@ export default function Hero({
 
         Build Modern <br />
 
-        Websites Easily 🚀
+        Websites Easily 
 
       </h1>
 
