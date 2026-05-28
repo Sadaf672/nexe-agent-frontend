@@ -37,7 +37,7 @@ export default function MainLayout({
       )}
 
       {/* Main Content */}
-      <div className="pt-[90px]">
+      <div className="pt-[80px] bg-[#050816] min-h-screen">
 
         {children}
 
